@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hochela Onboarding Wizard - Share Basics About Your Property</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .wizard-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .wizard-card {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+      }
+      .step-heading {
+        text-align: center;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+      }
+      .step-description {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 1rem;
+      }
+      .input-group {
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+      }
+      .input-group .btn {
+        width: 40px;
+        height: 40px;
+      }
+      .input-group input {
+        text-align: center;
+        width: 60px;
+      }
+      .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+      }
+      .navigation-buttons button {
+        padding: 10px 20px;
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="hochelaForm">
+      <div class="container wizard-container" id="step-7">
+        <div class="wizard-card">
+          <h2 class="step-heading">Share Some Basics About Your Property</h2>
+          <p class="step-description">You’ll add more details later, like bed types.</p>
+
+          <div style="margin-bottom: -10px" class="input-group justify-content-between">
+            <label for="students" class="form-label me-2">Students</label>
+            <div style="display: flex">
+              <img class="mr-3" style="cursor: pointer; margin-right: 0px" onclick="changeValue('students', -1)" src="img/icons/agent/Minus.png" alt="" />
+              <input style="border: none; padding: 0" type="number" class="form-control" id="students" value="0" readonly />
+              <img style="cursor: pointer; margin-left: -12px" onclick="changeValue('students', 1)" src="img/icons/agent/Add.png" alt="" />
+            </div>
+          </div>
+          <hr />
+          <div style="margin-bottom: -10px; margin-top: 50px;" class="input-group justify-content-between">
+            <label for="bedrooms" class="form-label me-2">Bedrooms</label>
+            <div style="display: flex">
+              <img class="mr-3" style="cursor: pointer; margin-right: 0px" onclick="changeValue('bedrooms', -1)" src="img/icons/agent/Minus.png" alt="" />
+              <input style="border: none; padding: 0" type="number" class="form-control" id="bedrooms" value="0" readonly />
+              <img style="cursor: pointer; margin-left: -12px" onclick="changeValue('bedrooms', 1)" src="img/icons/agent/Add.png" alt="" />
+            </div>
+          </div>
+          <hr />
+          <div style="margin-bottom: -10px; margin-top: 50px;" class="input-group justify-content-between">
+            <label for="bathrooms" class="form-label me-2">Bathrooms</label>
+            <div style="display: flex">
+              <img class="mr-3" style="cursor: pointer; margin-right: 0px" onclick="changeValue('bathrooms', -1)" src="img/icons/agent/Minus.png" alt="" />
+              <input style="border: none; padding: 0" type="number" class="form-control" id="bathrooms" value="0" readonly />
+              <img style="cursor: pointer; margin-left: -12px" onclick="changeValue('bathrooms', 1)" src="img/icons/agent/Add.png" alt="" />
+            </div>
+          </div>
+          <hr />
+          <div style="margin-bottom: -10px; margin-top: 50px;" class="input-group justify-content-between">
+            <label for="beds" class="form-label me-2">Beds</label>
+            <div style="display: flex">
+              <img class="mr-3" style="cursor: pointer; margin-right: 0px" onclick="changeValue('beds', -1)" src="img/icons/agent/Minus.png" alt="" />
+              <input style="border: none; padding: 0" type="number" class="form-control" id="beds" value="0" readonly />
+              <img style="cursor: pointer; margin-left: -12px" onclick="changeValue('beds', 1)" src="img/icons/agent/Add.png" alt="" />
+            </div>
+          </div>
+          <hr />
+
+          <div class="navigation-buttons">
+            <button type="button" class="btn btn-secondary" onclick="showStep(6)">Back</button>
+            <button type="button" class="btn btn-primary" onclick="showStep(8)">Next</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function showStep(step) {
+        const steps = document.querySelectorAll(".wizard-container");
+        steps.forEach((el, index) => {
+          el.style.display = index === step ? "flex" : "none";
+        });
+      }
+
+      function changeValue(id, delta) {
+        const input = document.getElementById(id);
+        let currentValue = parseInt(input.value);
+        currentValue += delta;
+        input.value = Math.max(currentValue, 0); // Ensure value doesn't go below 0
+      }
+    </script>
+  </body>
+</html>
